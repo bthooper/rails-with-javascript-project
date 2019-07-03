@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Champion: A Playbook Manager for Football Coaches</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id='main' class='container'>
+      <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+        <a class="navbar-brand" href="#">Champion</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <%= link_to "Home", root_path, class: 'nav-link' %>
+            </li>
+            <% if logged_in? %>
+              <li class='nav-item'>
+                <%= link_to "Profile", user_path(current_user), class: 'nav-link' %>
+              </li>
+              <li class='nav-item'>
+                <%= link_to "Playbooks", user_playbooks_path(current_user), class:'nav-link' %>
+              </li>
+              <li class='nav-item'>
+                <%= link_to "Plays", user_plays_path(current_user), class:'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Games", user_games_path(current_user), class:'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Opponents", user_opponents_path(current_user), class:'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Logout", logout_path, method: "delete", class: 'nav-link' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Login", '/login', class: 'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Create Account", new_user_path, class: 'nav-link' %>
+              </li>
+            <% end %>
+          </ul>
+            <span class='navbar text'>
+              A Playbook Manager for Football Coaches
+          </span>
+        </div>
+      </nav> <%= yield %>
+  </div>
+  </body>
+</html>

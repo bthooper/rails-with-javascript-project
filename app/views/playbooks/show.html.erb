@@ -1,0 +1,16 @@
+<h1>Playbook</h1>
+<p>Title: <%= @playbook.name %></p>
+<p>Description: <%= @playbook.description %></p>
+<p>Situation: <%= @playbook.situation %></p>
+
+
+<h2>Plays</h2>
+
+<ul>
+  <% @playbook.plays.each do |play| %>
+    <li><%= link_to play.name, user_play_path(current_user, play) %></li>
+  <% end %>
+</ul>
+
+<p><%= link_to "Add play", new_playbook_play_path(@playbook) %></p>
+<p><%= link_to "Delete Playbook", [current_user, @playbook], method: :delete, data: { confirm: "Are you sure you want to delete this playbook?" } %></p>

@@ -1,0 +1,15 @@
+<h1>Opponent</h1>
+
+<p>Name: <%= @opponent.name %></p>
+<p>Mascot: <%= @opponent.mascot %></p>
+
+<p>Other users playing against them:<p>
+<% @opponent.users.each do |user| %>
+  <p><%= user.name %></p>
+<p>Games:</p>
+<% user.games.select { |game| game.opponent.name == @opponent.name }.each do |game| %>
+    <p><%= game.date %> | <%= game.location %> | <%= game.user.name %> | <%= game.opponent.name %> </p>
+<% end %>
+  <% end %>
+
+<p><%= link_to "Edit Opponent", edit_user_opponent_path(current_user, @opponent) %></p>
