@@ -1,25 +1,14 @@
 // Turbolinks is installed, so we need to start with:
-$(document).on("turbolinks:load", function() {
+$(function() {
 
   $('.playbook_anchor').on('click', function(e) {
     e.preventDefault();
-    console.log(e);
-    console.log(e.target.baseURI);
 
-    // We need to make a request for the playbook data we want, and then 
-    // append it to the li item so that it is displayed on the page
-    // without a reload.  AJAX!
-    
     const playbook_url = e.target.href;
-    const data = getPlaybookDataFromUrl(playbook_url);
-
-
-    // You will get JS object back in data above.  So you 
-    // may need to deal with that object in some way
-    // before you append it.
     
-    // appendData(data);
-    
+    // This function retreives playbook data, creates a playbook object
+    // and then displays the playbook data in the playbook table
+    getPlaybookDataFromUrl(playbook_url);
     
   });
 
@@ -31,21 +20,12 @@ $(document).on("turbolinks:load", function() {
     }
 
     htmlForTd() {
-      return this.descrition + "<br/>" + this.situation;
+      return this.description + "<br/>" + this.situation;
     }
 
   }
 
   function getPlaybookDataFromUrl(url) {
-
-    //  Use fetch to get data from RoR api.
-    //  Format that data and capture it in a JS object
-    //  return that JS object 
-    //
-    
-    // Fetch appends '.json' to the URL to specifiy json request.
-    // 
-    
     fetch(url + '.json')
     .then(function(resp) {
       return resp.json();
@@ -58,23 +38,11 @@ $(document).on("turbolinks:load", function() {
       const playbook = new Playbook(resp.name, resp.description, resp.situation);
       console.log(playbook);
       let playbook_id = "td#" + playbook.name.toLowerCase().replace(' ', '-') + '-description';
+      console.log(playbook_id);
       $(`${playbook_id}`).empty();
-      $(`${playbook_id}`).append(playbook.htlmForTd);
+      $(`${playbook_id}`).append(playbook.htmlForTd());
     });
-    
-
-    // return data;
-    //
-    //
-    return "awesome";
-    
-
   }
-
-  function appendData(data) {
-
-  }
-
 
 
 });
