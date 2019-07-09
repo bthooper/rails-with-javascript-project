@@ -16,7 +16,7 @@ $(document).on("turbolinks:load", function() {
     
     const data = getPlaybookDataFromUrl(playbook_url);
 
-    // console.log(data);
+    console.log(data);
 
     // You will get JS object back in data above.  So you 
     // may need to deal with that object in some way
@@ -33,7 +33,10 @@ $(document).on("turbolinks:load", function() {
     //  Format that data and capture it in a JS object
     //  return that JS object 
     //
-    fetch(url)
+    
+    // Fetch appends '.json' to the URL to specifiy json request.
+    // 
+    fetch(url + '.json')
     .then(function(resp) {
       return resp.json();
     })
