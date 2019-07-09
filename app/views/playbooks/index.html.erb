@@ -1,23 +1,26 @@
-<h1><%= current_user.name %>'s Playbooks</h1>
+<div id="main-content">
+  <h1><%= current_user.name %>'s Playbooks</h1>
 
-<table class='table'>
-  <thead>
-    <tr>
-      <th scope='col'>Name</th>
-      <th scope='col'>Desciption</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @playbooks.each do |playbook| %>
+  <table class='table'>
+    <thead>
       <tr>
-        <td><%= link_to playbook.name, user_playbook_path(current_user, playbook), class: "playbook_anchor" %></td>
-        <td id="<%= playbook.name.downcase.gsub(' ', '-') %>-description"><%= playbook.description %></td>
+        <th scope='col'>Name</th>
+        <th scope='col'>Desciption</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @playbooks.each do |playbook| %>
+        <tr>
+          <td><%= link_to playbook.name, user_playbook_path(current_user, playbook), class: "playbook_anchor" %></td>
+          <td id="<%= playbook.name.downcase.gsub(' ', '-') %>-description"><%= playbook.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-      
 
 
-<%= link_to "Create new playbook", new_user_playbook_path %>
+
+  <%= link_to "Create new playbook", new_user_playbook_path %>
+
+</div>

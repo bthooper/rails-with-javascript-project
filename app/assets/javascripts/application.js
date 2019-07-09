@@ -18,5 +18,16 @@
 //= require_tree .
 //
 
+$(() => {
 
+  $('a:contains("Playbooks")').on('click', (e) => {
+    e.preventDefault;
+    fetch(
+
+
+
+  });
+
+
+});
 

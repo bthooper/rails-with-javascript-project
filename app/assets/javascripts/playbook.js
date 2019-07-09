@@ -19,7 +19,10 @@ $(function() {
     // render the show page, also via ajax
     
     let playbook = new Playbook(e.target[2].value, e.target[3].value, e.target[4].value);
-    submitAndRenderPlaybookForm(playbook);
+    // let post_url = e.
+    // submitAndRenderPlaybookForm(playbook);
+    //
+    console.log(e);
   
   });
 
@@ -38,24 +41,18 @@ $(function() {
 
   function getPlaybookDataFromUrl(url) {
     fetch(url + '.json')
-    .then(function(resp) {
-      return resp.json();
-    })
-    .then(function(resp) {
-      // make a playbook objiect with a constructor.
-      // Send this data to the constructor creating a new object
-      // Use attributes and/or create a prototype fucntion to create text.
-      //
-      const playbook = new Playbook(resp.name, resp.description, resp.situation);
-      console.log(playbook);
-      let playbook_id = "td#" + playbook.name.toLowerCase().replace(' ', '-') + '-description';
-      console.log(playbook_id);
+    .then(res => res.json())
+    .then(data => {
+      const playbook = new Playbook(data.name, data.description, data.situation);
+      const playbook_id = "td#" + playbook.name.toLowerCase().replace(' ', '-') + '-description';
       $(`${playbook_id}`).empty();
       $(`${playbook_id}`).append(playbook.htmlForTd());
     });
   }
 
-  function submitAndRenderPlaybookForm(playbook) {
+  function submitAndRenderPlaybookForm(playbook, post_url) {
+    
+
 
     
   }
