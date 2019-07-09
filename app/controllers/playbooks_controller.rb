@@ -10,8 +10,10 @@ class PlaybooksController < ApplicationController
     @playbook = Playbook.find_by(id: params[:id])
     respond_to do |format|
       format.html
-      format.json { render json: @playbook }
+      format.json { render json: @playbook.to_json(only: [:name, :description, :situation]) }
     end
+
+      
   end
 
   def new

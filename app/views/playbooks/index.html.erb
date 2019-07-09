@@ -11,7 +11,7 @@
     <% @playbooks.each do |playbook| %>
       <tr>
         <td><%= link_to playbook.name, user_playbook_path(current_user, playbook), class: "playbook_anchor" %></td>
-        <td><%= playbook.description %></td>
+        <td id="<%= playbook.name.downcase.gsub(' ', '-') %>-description"><%= playbook.description %></td>
       </tr>
     <% end %>
   </tbody>
