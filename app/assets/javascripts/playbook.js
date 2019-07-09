@@ -10,7 +10,7 @@ $(document).on("turbolinks:load", function() {
     // append it to the li item so that it is displayed on the page
     // without a reload.  AJAX!
     
-    const playbook_url = e.target.baseURI;
+    const playbook_url = e.target.href;
 
     console.log("PB URL: " + playbook_url);
     
@@ -35,7 +35,7 @@ $(document).on("turbolinks:load", function() {
     //
     fetch(url)
     .then(function(resp) {
-      return resp.text();
+      return resp.json();
     })
     .then(function(resp) {
       console.log(resp);

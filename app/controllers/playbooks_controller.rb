@@ -8,6 +8,7 @@ class PlaybooksController < ApplicationController
 
   def show
     @playbook = Playbook.find_by(id: params[:id])
+    render json: @playbook.to_json
   end
 
   def new
