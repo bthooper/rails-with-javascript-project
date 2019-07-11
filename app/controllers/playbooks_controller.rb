@@ -4,6 +4,10 @@ class PlaybooksController < ApplicationController
 
   def index
     @playbooks = current_user.playbooks.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @playbooks.to_json }
+    end
   end
 
   def show

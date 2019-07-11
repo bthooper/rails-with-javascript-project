@@ -5,11 +5,16 @@ $(function() {
   $('a:contains("Playbooks")').on('click', function(e) {
     e.preventDefault();
 
-    fetch(`/users/${this.dataset.id}/playbooks`)
+    fetch(`/users/${this.dataset.id}/playbooks.json`)
     .then(res => res.json())
     .then(json => {
+      console.log(json);
+      json.forEach(e => {
+        console.log(e.name);
+      });
+    
       
-    }
+    });
 
 
 
