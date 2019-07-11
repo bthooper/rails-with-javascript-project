@@ -2,9 +2,14 @@
 $(function() {
 
 
-  $('a:contains("Playbooks")').on('click', (e) => {
+  $('a:contains("Playbooks")').on('click', function(e) {
     e.preventDefault();
-    alert('PLAY....BOOKS!');
+
+    fetch(`/users/${this.dataset.id}/playbooks`)
+    .then(res => res.json())
+    .then(json => {
+      
+    }
 
 
 
