@@ -12,7 +12,8 @@ $(function() {
       let html = `<div id='main-content'><h1>Your Playbooks</h1><table class='table'><thead><tr><th scope='col'>Name</th><th scope='col'>Description</th></tr></thead><tbody>`; 
 
       json.forEach(e => {
-        console.log(e.name);
+        const pb = new Playbook(e.name, e.description, e.situation, e.id);
+        html += makeRowAndTdforPlaybook(pb, this.dataset.id);
       });
     
      html += `</tbody></table>`; 
@@ -23,6 +24,13 @@ $(function() {
 
 
   });
+
+  function makeRowAndTdforPlaybook(playbook, id) {
+    html = "<tr><td>";
+    html += `<a href="/users/${id}/playbooks/${playbook.id}" class="playbook_anchor">${playbook.name}</a></td>`; 
+    html += `<td id="${playbook.name.toLowerCase().replace(' ', '-')}-description">${playbook.description}</td></tr>`;
+   return html;
+  }
 
   $('.playbook_anchor').on('click', function(e) {
     e.preventDefault();
@@ -50,7 +58,8 @@ $(function() {
   });
 
   class Playbook {
-    constructor(name, description, situation) {
+    constructor(name, description, situation, id=0) {
+      this.id = id;
       this.name = name;
       this.description = description;
       this.situation = situation;
