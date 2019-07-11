@@ -12,8 +12,6 @@ class PlaybooksController < ApplicationController
       format.html
       format.json { render json: @playbook.to_json(only: [:name, :description, :situation]) }
     end
-
-      
   end
 
   def new

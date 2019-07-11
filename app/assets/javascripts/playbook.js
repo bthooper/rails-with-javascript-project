@@ -1,6 +1,15 @@
 // Turbolinks is installed, so we need to start with:
 $(function() {
 
+
+  $('a:contains("Playbooks")').on('click', (e) => {
+    e.preventDefault();
+    alert('PLAY....BOOKS!');
+
+
+
+  });
+
   $('.playbook_anchor').on('click', function(e) {
     e.preventDefault();
 
