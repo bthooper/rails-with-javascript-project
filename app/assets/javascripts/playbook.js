@@ -9,11 +9,15 @@ $(function() {
     .then(res => res.json())
     .then(json => {
       console.log(json);
+      let html = `<div id='main-content'><h1>Your Playbooks</h1><table class='table'><thead><tr><th scope='col'>Name</th><th scope='col'>Description</th></tr></thead><tbody>`; 
+
       json.forEach(e => {
         console.log(e.name);
       });
     
-      
+     html += `</tbody></table>`; 
+      $('#main-content-area').empty();
+      $('#main-content-area').append(html);
     });
 
 
