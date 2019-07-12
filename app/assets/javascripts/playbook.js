@@ -15,7 +15,7 @@ $(function() {
         html += makeRowAndTdforPlaybook(pb, this.dataset.id);
       });
     
-     html += `</tbody></table>`; 
+     html += `</tbody></table><a href="/users/${this.dataset.id}/playbooks/new">Create new playbook</a>`; 
       $('#main-content-area').empty();
       $('#main-content-area').append(html);
     });
