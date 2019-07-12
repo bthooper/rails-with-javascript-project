@@ -1,6 +1,5 @@
-// Turbolinks is installed, so we need to start with:
+// Turbolinks is removed, so we need to start with:
 $(function() {
-
 
   $('a:contains("Playbooks")').on('click', function(e) {
     e.preventDefault();
@@ -21,8 +20,6 @@ $(function() {
       $('#main-content-area').append(html);
     });
 
-
-
   });
 
   function makeRowAndTdforPlaybook(playbook, id) {
@@ -32,7 +29,7 @@ $(function() {
    return html;
   }
 
-  $('.playbook_anchor').on('click', function(e) {
+  $('.container').on('click', '.playbook_anchor', function(e) {
     e.preventDefault();
 
     const playbook_url = e.target.href;
