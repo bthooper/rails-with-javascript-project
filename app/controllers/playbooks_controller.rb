@@ -25,7 +25,9 @@ class PlaybooksController < ApplicationController
   def create
     @playbook = current_user.playbooks.build(playbook_params(:name, :description, :situation))
     if @playbook.save
-      redirect_to user_playbook_path current_user, @playbook
+      # redirect_to user_playbook_path current_user, @playbook
+      # now, render json back
+      render json: @playbook
     else
       render 'new'
     end

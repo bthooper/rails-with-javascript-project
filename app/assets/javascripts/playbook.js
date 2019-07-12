@@ -46,11 +46,26 @@ $(function() {
     // We need to submit the form via ajax, and then
     // render the show page, also via ajax
     
-    let playbook = new Playbook(e.target[2].value, e.target[3].value, e.target[4].value);
+    // let playbook = new Playbook(e.target[2].value, e.target[3].value, e.target[4].value);
     // let post_url = e.
     // submitAndRenderPlaybookForm(playbook);
     //
-    console.log(e);
+    const values = $(this).serialize();
+    fetch('/playbooks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: values,
+      
+    })
+    .then(response => response.json())
+    .then(json => {
+      const playbook = new Playbook(json.name, json.description, json.situation, json.id);
+      console.log(playbook);
+      
+
+    });
   
   });
 
@@ -65,7 +80,6 @@ $(function() {
     htmlForTd() {
       return this.description + "<br/>" + this.situation;
     }
-
   }
 
   function getPlaybookDataFromUrl(url) {
