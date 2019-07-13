@@ -7,11 +7,10 @@ $(function() {
     fetch(`/users/${this.dataset.id}/playbooks.json`)
     .then(res => res.json())
     .then(json => {
-      console.log(json);
       let html = `<div id='main-content'><h1>Your Playbooks</h1><table class='table'><thead><tr><th scope='col'>Name</th><th scope='col'>Description</th></tr></thead><tbody>`; 
 
       json.forEach(e => {
-        const pb = new Playbook(e.name, e.description, e.situation, e.id);
+        const pb = new Playbook(e);
         html += makeRowAndTdforPlaybook(pb, this.dataset.id);
       });
     
@@ -61,24 +60,29 @@ $(function() {
     })
     .then(response => response.json())
     .then(json => {
-      const playbook = new Playbook(json.name, json.description, json.situation, json.id);
-      console.log(playbook);
-      
+      const playbook = new Playbook(json);
+      $('#main-content-area').html('');
+      $('#main-content-area').append(playbook.show());
 
     });
   
   });
 
   class Playbook {
-    constructor(name, description, situation, id=0) {
-      this.id = id;
-      this.name = name;
-      this.description = description;
-      this.situation = situation;
+    constructor(pb) {
+      this.id = pb.id;
+      this.name = pb.name;
+      this.description = pb.description;
+      this.situation = pb.situation;
     }
 
     htmlForTd() {
       return this.description + "<br/>" + this.situation;
+    }
+
+    show() {
+      let html = `<h1>Playbook</h1><p>Title: ${this.name}</p><p>Description: ${this.description}</p><p>Situation: ${this.situation}`
+      return html;
     }
   }
 
@@ -86,7 +90,8 @@ $(function() {
     fetch(url + '.json')
     .then(res => res.json())
     .then(data => {
-      const playbook = new Playbook(data.name, data.description, data.situation);
+      console.log(data);
+      const playbook = new Playbook(data);
       const playbook_id = "td#" + playbook.name.toLowerCase().replace(' ', '-') + '-description';
       $(`${playbook_id}`).empty();
       $(`${playbook_id}`).append(playbook.htmlForTd());
