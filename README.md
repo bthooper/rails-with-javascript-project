@@ -20,7 +20,8 @@ a list of opponents.
 You can learn about the code I used to make this project by reading my
 rather detailed [blog
 post](http://overstatement.org/my-latest-project-adding-ajax-to-my-rails-project/)
-on my personal blog.
+on my personal blog. There is also a video demonstration available over on
+my [Vimeo account](https://vimeo.com/349742531).
 
 ### Installation
 
@@ -29,7 +30,8 @@ migrate the database.  Start the server up and you can visit the site and
 create an account. 
 
 ```
-Git clone 
+git clone git@github.com:bthooper/rails-with-javascript-project.git
+cd rails-wit-javascript-project
 bundle install
 rake db:migrate
 rails s
