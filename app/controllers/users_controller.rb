@@ -22,7 +22,10 @@ class UsersController < ApplicationController
   def show
     if params[:id].to_i == current_user.id 
       @user = current_user 
-      render json: @user 
+      respond_to do |f|
+        f.html
+        f.json { render json: @user }
+      end
     else
       redirect_to current_user 
     end
