@@ -4,7 +4,7 @@ $(function() {
   $('a:contains("Profile")').on('click', function(e) {
     e.preventDefault();
 
-    fetch(`/users/${this.dataset.id}`)
+    fetch(`/users/${this.dataset.id}.json`)
     .then(res => res.json())
     .then(json => {
       const user = new User(json);
