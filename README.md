@@ -15,5 +15,32 @@ project. That app was designed to allow a football coach to put together
 a list of playbooks with plays in them and to set up a schedule against
 a list of opponents.
 
+#### Blog Post
+
+You can learn about the code I used to make this project by reading my
+rather detailed [blog
+post](http://overstatement.org/my-latest-project-adding-ajax-to-my-rails-project/)
+on my personal blog.
+
+### Installation
+
+To install this project, simply clone this repo, bundle the gems, and
+migrate the database.  Start the server up and you can visit the site and
+create an account. 
+
+```
+Git clone 
+bundle install
+rake db:migrate
+rails s
+```
+
+### License
+
+This was an educational experience for me.  Anyone is welcome to use this
+code for any educational purpose. However, use at your own risk. This is
+not production-ready code.  Run it at your own risk!
+
+
 
 
